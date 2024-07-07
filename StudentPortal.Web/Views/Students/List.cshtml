@@ -1,0 +1,42 @@
+﻿@model List<StudentPortal.Web.Models.Entities.Student>
+<h1>Students</h1>
+
+<table class="table">
+	<thead style="background-color:aqua">
+	<th>Id</th>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Phone</th>
+	<th>Age</th>
+	<th>Status</th>
+	</thead>
+	<tbody>
+		@foreach (var student in Model)
+		{
+			<tr>
+				<td>@student.Id</td>
+				<td>@student.Name</td>
+				<td>@student.Email</td>
+				<td>@student.Phone</td>
+				<td>@student.Age</td>
+				<td>
+					@if (student.Subscribed)
+					{
+						<svg xmlns="http://www.w3.org/2000/svg" color="Green" width="20" height="20" fill="Green" class="bi bi-circle-fill" viewBox="0 0 16 16">
+							<circle cx="8" cy="8" r="8" />
+						</svg>
+					}
+					else
+					{
+						<svg xmlns="http://www.w3.org/2000/svg" color="Red" width="20" height="20" fill="Red" class="bi bi-circle-fill" viewBox="0 0 16 16">
+							<circle cx="8" cy="8" r="8" />
+						</svg>
+					}
+				</td>
+				<td><a class="btn btn-primary" asp-controller="Students" asp-action="Edit" asp-route-Id = "@student.Id">Edit</a>
+					<a class="btn btn-danger" asp-controller="Students" asp-action="Delete" asp-route-Id = "@student.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
